@@ -54,4 +54,16 @@ function playGame() {
   }
 }
 
+// loop that will repeat the round until one of the players reach 5 points
+while (humanScore !== 5 && computerScore !== 5) {
+  console.log(playGame());
+}
 
+// conditional statement that will display who won the game
+if (humanScore == 5) {
+  console.log("You won!");
+} else if (computerScore == 5) {
+  console.log("The computer won!");
+} else {
+  console.log("Something is not right");
+}

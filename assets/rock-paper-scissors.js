@@ -35,19 +35,19 @@ function playGame() {
     // function that output a message and score based on the choices of the player and computer
     function playRound(humanChoice, computerChoice) {
       if (humanChoice == "rock" && computerChoice == "scissors") {
-        return `You win!\nRock beats Scissors\n\nYou: ${humanChoice}\nComputer: ${computerChoice}\n\n(Score)\nYou: ${++humanScore}\nComputer: ${computerScore}`;
+        return alert(`You win!\nRock beats Scissors\n\nYou: ${humanChoice}\nComputer: ${computerChoice}\n\n(Score)\nYou: ${++humanScore}\nComputer: ${computerScore}`);
       } else if (humanChoice == "rock" && computerChoice == "paper") {
-        return `You lose!\nPaper beats Rock\n\nYou: ${humanChoice}\nComputer: ${computerChoice}\n\n(Score)\nYou: ${humanScore}\nComputer: ${++computerScore}`;
+        return alert(`You lose!\nPaper beats Rock\n\nYou: ${humanChoice}\nComputer: ${computerChoice}\n\n(Score)\nYou: ${humanScore}\nComputer: ${++computerScore}`);
       } else if (humanChoice == "paper" && computerChoice == "scissors") {
-        return `You lose!\nScissors beats Paper\n\nYou: ${humanChoice}\nComputer: ${computerChoice}\n\n(Score)\nYou: ${humanScore}\nComputer: ${++computerScore}`;
+        return alert(`You lose!\nScissors beats Paper\n\nYou: ${humanChoice}\nComputer: ${computerChoice}\n\n(Score)\nYou: ${humanScore}\nComputer: ${++computerScore}`);
       } else if (humanChoice == "paper" && computerChoice == "rock") {
-        return `You win!\nPaper beats Rock\n\nYou: ${humanChoice}\nComputer: ${computerChoice}\n\n(Score)\nYou: ${++humanScore}\nComputer: ${computerScore}`;
+        return alert(`You win!\nPaper beats Rock\n\nYou: ${humanChoice}\nComputer: ${computerChoice}\n\n(Score)\nYou: ${++humanScore}\nComputer: ${computerScore}`);
       } else if (humanChoice == "scissors" && computerChoice == "paper") {
-        return `You win!\nScissors beats Paper\n\nYou: ${humanChoice}\nComputer: ${computerChoice}\n\n(Score)\nYou: ${++humanScore}\nComputer: ${computerScore}`;
+        return alert(`You win!\nScissors beats Paper\n\nYou: ${humanChoice}\nComputer: ${computerChoice}\n\n(Score)\nYou: ${++humanScore}\nComputer: ${computerScore}`);
       } else if (humanChoice == "scissors" && computerChoice == "rock") {
-        return `You lose!\nRock beats Scissors\n\nYou: ${humanChoice}\nComputer: ${computerChoice}\n\n(Score)\nYou: ${humanScore}\nComputer: ${++computerScore}`;
+        return alert(`You lose!\nRock beats Scissors\n\nYou: ${humanChoice}\nComputer: ${computerChoice}\n\n(Score)\nYou: ${humanScore}\nComputer: ${++computerScore}`);
       } else {
-        return `It's a tie!\n\nYou: ${humanChoice}\nComputer: ${computerChoice}\n\n(Score)\nYou: ${humanScore}\nComputer: ${computerScore}`;
+        return alert(`It's a tie!\n\nYou: ${humanChoice}\nComputer: ${computerChoice}\n\n(Score)\nYou: ${humanScore}\nComputer: ${computerScore}`)  ;
       }
     }
     return playRound(humanSelection, computerSelection);
@@ -61,9 +61,9 @@ while (humanScore !== 5 && computerScore !== 5) {
 
 // conditional statement that will display who won the game
 if (humanScore == 5) {
-  console.log("You won!");
+  alert("You won the game!");
 } else if (computerScore == 5) {
-  console.log("The computer won!");
+  alert("The computer won the game!");
 } else {
-  console.log("Something is not right");
+  alert("Something is not right");
 }

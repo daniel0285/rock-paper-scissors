@@ -9,10 +9,20 @@ function playGame() {
   // function for the player or human that converts the input to lowercase
   function getHumanChoice(humanInput) {
     humanInput = humanInput.toLowerCase();
-    while (humanInput !== "rock" && humanInput !== "paper" && humanInput !== "scissors"){
+    while (
+      humanInput !== "rock" &&
+      humanInput !== "paper" &&
+      humanInput !== "scissors"
+    ) {
       alert("Please enter a valid option!");
       humanInput = prompt(`What will you choose?\n- Rock\n- Paper\n- Scissors`);
-      if(humanInput == "rock" && humanInput == "paper" && humanInput == "scissors"){roundNumber++};
+      if (
+        humanInput == "rock" &&
+        humanInput == "paper" &&
+        humanInput == "scissors"
+      ) {
+        roundNumber++;
+      }
     }
     return humanInput;
   }
@@ -76,11 +86,17 @@ for (round = 1; round <= 5; round++) {
 
 // conditional statement that will display who won the game
 if (humanScore > computerScore) {
-  alert(`You won the game!\n\nFinal Score:\nYou: ${humanScore}\nComputer: ${computerScore}`);
+  alert(
+    `You won the game!\n\nFinal Score:\nYou: ${humanScore}\nComputer: ${computerScore}`
+  );
 } else if (computerScore > humanScore) {
-  alert(`The computer won the game!\n\nFinal Score:\nYou: ${humanScore}\nComputer: ${computerScore}`);
-} else if (humanScore == computerScore){
-  alert(`It's a tie\n\nFinal Score:\nYou: ${humanScore}\nComputer: ${computerScore}`);
+  alert(
+    `The computer won the game!\n\nFinal Score:\nYou: ${humanScore}\nComputer: ${computerScore}`
+  );
+} else if (humanScore == computerScore) {
+  alert(
+    `It's a tie\n\nFinal Score:\nYou: ${humanScore}\nComputer: ${computerScore}`
+  );
 } else {
   alert("Something is not right");
 }

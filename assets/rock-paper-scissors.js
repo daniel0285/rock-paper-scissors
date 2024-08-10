@@ -16,13 +16,6 @@ function playGame() {
     ) {
       alert("Please enter a valid option!");
       humanInput = prompt(`What will you choose?\n- Rock\n- Paper\n- Scissors`);
-      if (
-        humanInput == "rock" &&
-        humanInput == "paper" &&
-        humanInput == "scissors"
-      ) {
-        roundNumber++;
-      }
     }
     return humanInput;
   }
@@ -46,29 +39,21 @@ function playGame() {
 
   // function that output a message and score based on the choices of the player and computer
   function playRound(humanChoice, computerChoice) {
-    if (humanChoice == "rock" && computerChoice == "scissors") {
+    if (
+      (humanChoice == "rock" && computerChoice == "scissors") ||
+      (humanChoice == "paper" && computerChoice == "rock") ||
+      (humanChoice == "scissors" && computerChoice == "paper")
+    ) {
       return alert(
-        `You win!\nRock beats Scissors\n\nYou: ${humanChoice.toUpperCase()}\nComputer: ${computerChoice.toUpperCase()}\n\n(Score)\nYou: ${++humanScore}\nComputer: ${computerScore}`
+        `You win!\n${humanChoice} beats ${computerChoice}\n\nYou: ${humanChoice.toUpperCase()}\nComputer: ${computerChoice.toUpperCase()}\n\n(Score)\nYou: ${++humanScore}\nComputer: ${computerScore}`
       );
-    } else if (humanChoice == "rock" && computerChoice == "paper") {
+    } else if (
+      (humanChoice == "rock" && computerChoice == "paper") ||
+      (humanChoice == "paper" && computerChoice == "scissors") ||
+      (humanChoice == "scissors" && computerChoice == "rock")
+    ) {
       return alert(
-        `You lose!\nPaper beats Rock\n\nYou: ${humanChoice.toUpperCase()}\nComputer: ${computerChoice.toUpperCase()}\n\n(Score)\nYou: ${humanScore}\nComputer: ${++computerScore}`
-      );
-    } else if (humanChoice == "paper" && computerChoice == "scissors") {
-      return alert(
-        `You lose!\nScissors beats Paper\n\nYou: ${humanChoice.toUpperCase()}\nComputer: ${computerChoice.toUpperCase()}\n\n(Score)\nYou: ${humanScore}\nComputer: ${++computerScore}`
-      );
-    } else if (humanChoice == "paper" && computerChoice == "rock") {
-      return alert(
-        `You win!\nPaper beats Rock\n\nYou: ${humanChoice.toUpperCase()}\nComputer: ${computerChoice.toUpperCase()}\n\n(Score)\nYou: ${++humanScore}\nComputer: ${computerScore}`
-      );
-    } else if (humanChoice == "scissors" && computerChoice == "paper") {
-      return alert(
-        `You win!\nScissors beats Paper\n\nYou: ${humanChoice.toUpperCase()}\nComputer: ${computerChoice.toUpperCase()}\n\n(Score)\nYou: ${++humanScore}\nComputer: ${computerScore}`
-      );
-    } else if (humanChoice == "scissors" && computerChoice == "rock") {
-      return alert(
-        `You lose!\nRock beats Scissors\n\nYou: ${humanChoice.toUpperCase()}\nComputer: ${computerChoice.toUpperCase()}\n\n(Score)\nYou: ${humanScore}\nComputer: ${++computerScore}`
+        `You lose!\n${computerChoice} beats ${humanChoice}\n\nYou: ${humanChoice.toUpperCase()}\nComputer: ${computerChoice.toUpperCase()}\n\n(Score)\nYou: ${humanScore}\nComputer: ${++computerScore}`
       );
     } else {
       return alert(
@@ -84,7 +69,7 @@ for (round = 1; round <= 5; round++) {
   playGame();
 }
 
-// conditional statement that will display who won the game
+// conditional statement that will display who won the game based on the score
 if (humanScore > computerScore) {
   alert(
     `You won the game!\n\nFinal Score:\nYou: ${humanScore}\nComputer: ${computerScore}`

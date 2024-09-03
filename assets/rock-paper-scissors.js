@@ -4,20 +4,6 @@ let computerScore = 0;
 let roundNumber = 0;
 let maxScore = 5;
 
-// function for the player or human that converts the input to lowercase
-// function getHumanChoice(humanInput) {
-//   humanInput = humanInput.toLowerCase();
-//   while (
-//     humanInput !== 'rock' &&
-//     humanInput !== 'paper' &&
-//     humanInput !== 'scissors'
-//   ) {
-//     alert('Please enter a valid option!');
-//     humanInput = prompt("What will you choose?\n- Rock\n- Paper\n- Scissors");
-//   }
-//   return humanInput;
-// }
-
 // function for the computer that gives a random choice
 function getComputerChoice() {
   let computerRandomNumber = Math.floor(Math.random() * 3) + 1;
@@ -38,14 +24,12 @@ function playRound(humanChoice, computerChoice) {
     (humanChoice == "paper" && computerChoice == "rock") ||
     (humanChoice == "scissors" && computerChoice == "paper")
   ) {
-    guiHumanChoice.textContent = `You: ${convertToEmoji(humanChoice)}`;
-    guiComputerChoice.textContent = `Computer: ${convertToEmoji(
-      computerChoice
-    )}`;
+    guiHumanChoice.textContent = `${convertToEmoji(humanChoice)}`;
+    guiComputerChoice.textContent = `${convertToEmoji(computerChoice)}`;
     guiHumanScore.textContent = `You: ${++humanScore}`;
     guiComputerScore.textContent = `Computer: ${computerScore}`;
     guiRoundNumber.textContent = `Round ${++roundNumber}`;
-    roundResult.textContent = `You win!\n${upperCaseFirstLetter(
+    gameMessage.innerHTML = `You win!<br>${upperCaseFirstLetter(
       humanChoice
     )} beats ${upperCaseFirstLetter(computerChoice)}`;
   } else if (
@@ -53,37 +37,34 @@ function playRound(humanChoice, computerChoice) {
     (humanChoice == "paper" && computerChoice == "scissors") ||
     (humanChoice == "scissors" && computerChoice == "rock")
   ) {
-    guiHumanChoice.textContent = `You: ${convertToEmoji(humanChoice)}`;
-    guiComputerChoice.textContent = `Computer: ${convertToEmoji(
-      computerChoice
-    )}`;
+    guiHumanChoice.textContent = `${convertToEmoji(humanChoice)}`;
+    guiComputerChoice.textContent = `${convertToEmoji(computerChoice)}`;
     guiHumanScore.textContent = `You: ${humanScore}`;
     guiComputerScore.textContent = `Computer: ${++computerScore}`;
     guiRoundNumber.textContent = `Round ${++roundNumber}`;
-    roundResult.textContent = `You lose!\n${upperCaseFirstLetter(
+    gameMessage.innerHTML = `You lose!<br>${upperCaseFirstLetter(
       computerChoice
     )} beats ${upperCaseFirstLetter(humanChoice)}`;
   } else {
-    guiHumanChoice.textContent = `You: ${convertToEmoji(humanChoice)}`;
-    guiComputerChoice.textContent = `Computer: ${convertToEmoji(
-      computerChoice
-    )}`;
+    guiHumanChoice.textContent = `${convertToEmoji(humanChoice)}`;
+    guiComputerChoice.textContent = `${convertToEmoji(computerChoice)}`;
     guiHumanScore.textContent = `You: ${humanScore}`;
     guiComputerScore.textContent = `Computer: ${computerScore}`;
     guiRoundNumber.textContent = `Round ${++roundNumber}`;
-    roundResult.textContent = "It's a tie!";
+    gameMessage.innerHTML = "It's a tie!";
+    ++tiedRounds;
   }
 
   if (humanScore == 5) {
-    roundResult.textContent = `You won the game in ${roundNumber} rounds!\n\nFinal Score:\nYou: ${humanScore}\nComputer: ${computerScore}`;
+    gameMessage.innerHTML = `You won the game in ${roundNumber} rounds!<br> Final Score:<br>You: ${humanScore}<br>Computer: ${computerScore}`;
     disableButton();
-    playAgainModal();
+    popUpModal();
   }
 
   if (computerScore == 5) {
-    roundResult.textContent = `The computer won the game ${roundNumber} rounds!\n\nFinal Score:\nYou: ${humanScore}\nComputer: ${computerScore}`;
+    gameMessage.innerHTML = `The computer won the game ${roundNumber} rounds!<br> Final Score:<br>You: ${humanScore}<br>Computer: ${computerScore}`;
     disableButton();
-    playAgain();
+    popUpModal();
   }
 }
 
@@ -94,39 +75,46 @@ function playGame(input) {
 }
 
 //DOM elements for GUI
-const rock = document.querySelector("#rock");
-const paper = document.querySelector("#paper");
-const scissors = document.querySelector("#scissors");
-const guiRoundNumber = document.querySelector("#round-number");
-const roundResult = document.querySelector(".round-result");
-const guiHumanChoice = document.querySelector("#human-choice");
-const guiComputerChoice = document.querySelector("#computer-choice");
-const guiHumanScore = document.querySelector("#human-score");
-const guiComputerScore = document.querySelector("#computer-score");
-const playAgainModal = document.querySelector("#play-again-modal");
-const playAgainButton = document.querySelector("#play-again-button");
+const rock = document.getElementById("rock");
+const paper = document.getElementById("paper");
+const scissors = document.getElementById("scissors");
+const guiRoundNumber = document.getElementById("round-number");
+const gameMessage = document.getElementById("game-message");
+const guiHumanChoice = document.getElementById("human-choice");
+const guiComputerChoice = document.getElementById("computer-choice");
+const guiHumanScore = document.getElementById("human-score");
+const guiComputerScore = document.getElementById("computer-score");
+const playAgainModal = document.getElementById("play-again-modal");
+const playAgainButton = document.getElementById("play-again-button");
 
-rock.addEventListener("click", () => {
-  input = "rock";
-  playGame(input);
-});
+rock.addEventListener("click", () => playGame("rock"));
 
-paper.addEventListener("click", () => {
-  input = "paper";
-  playGame(input);
-});
+paper.addEventListener("click", () => playGame("paper"));
 
-scissors.addEventListener("click", () => {
-  input = "scissors";
-  playGame(input);
-});
+scissors.addEventListener("click", () => playGame("scissors"));
 
-function testMessage(input) {
-  alert(input);
+playAgainButton.addEventListener("click", () => tryAgain());
+
+function popUpModal() {
+  playAgainModal.style.display = "block";
 }
 
-function playAgain() {
-  playAgainModal.style.display = "block";
+function tryAgain() {
+  rock.disabled = false;
+  paper.disabled = false;
+  scissors.disabled = false;
+
+  humanScore = 0;
+  computerScore = 0;
+  roundNumber = 0;
+
+  guiHumanChoice.textContent = "❔";
+  guiComputerChoice.textContent = "❔";
+  guiHumanScore.textContent = "You: 0";
+  guiComputerScore.textContent = "Computer: 0";
+  guiRoundNumber.textContent = "Round: 1";
+  gameMessage.innerHTML = "What are you waiting for? Start the game!";
+  playAgainModal.style.display = "none";
 }
 
 function disableButton() {
@@ -149,4 +137,4 @@ function upperCaseFirstLetter(word) {
   return word.charAt(0).toUpperCase() + word.slice(1);
 }
 
-console.log(document.querySelector("#round-number"));
+// console.log(document.getElementById("round-number"));

@@ -8,26 +8,51 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="human-choices">
-            <button id="rock">👊🏻</button>
-            <button id="paper">✋🏻</button>
-            <button id="scissors">✌🏻</button>
-        </div>
-        <div class="round-choices">
-            <p id="human-choice"></p>
-            <p id="computer-choice"></p>
-        </div>
-        <div class="round-result">
-        </div>
-        <p id="round-number"></p>
-        <p id="scores">Score</p>
-        <p id="human-score">Human: </p>
-        <p id="computer-score">Computer: </p>
-        <div class="play-again-modal" style="display: none;">
-            <button id=" play-again">Play Again</button>
-        </div>
-    </div>
+    <header id="rps-header">
+        <h1>Rock Paper Scissors</h1>
+    </header>
+
+    <main id="rps-container">
+        <section id="human-choices">
+            <h2 id="choice-heading">Pick your weapon</h2>
+            <div id="weapon-container">
+                <button class="weapon-icon" id="rock">👊🏻</button>
+                <button class="weapon-icon" id="paper">✋🏻</button>
+                <button class="weapon-icon" id="scissors">✌🏻</button>
+            </div>
+        </section>
+
+        <section id="round-choices">
+            <div class="choice-container">
+                <p class="choice-lable">You</p>
+                <p id="human-choice">❔</p>
+            </div>
+            <p>VS</p>
+            <div class="choice-container">
+                <p class="choice-lable">Computer</p>
+                <p id="computer-choice">❔</p>
+            </div>
+        </section>
+
+        <section id="round-result">
+            <h3 id="game-message">What are you waiting for?<br>Start the game!</h3>
+            <div id="round-score-board">
+                <p id="round-number">Round 1</p>
+                <p id="scores">Score</p>
+                <p id="human-score">You: 0</p>
+                <p id="computer-score">Computer: 0</p>
+            </div>
+        </section>
+
+        <section id="play-again-modal" style="display: none;">
+            <button id="play-again-button">Play Again</button>
+        </section>
+    </main>
+
+    <footer id="rps-footer">
+        <p>Created by Daniel Zabat</p>
+    </footer>
+
     <script src="assets/rock-paper-scissors.js"></script>
 </body>
 

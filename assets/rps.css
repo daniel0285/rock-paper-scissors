@@ -1,14 +1,22 @@
 @font-face {
-  font-family: Pixelify-Sans;
-  src: url(./Pixelify-Sans-fonts/PixelifySans-Regular.ttf);
+  font-family: PressStart2P-Regular;
+  src: url(./Press-Start-2P/PressStart2P-Regular.ttf);
+}
+
+:root {
+  --color-1: #222831;
+  --color-2: #393e46;
+  --color-3: #eeeeee;
+  --br-value: 7px;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  outline: 2px solid black;
-  font-family: Pixelify-Sans, Arial, Helvetica, sans-serif;
+  font-family: PressStart2P-Regular, Arial, Helvetica, sans-serif;
+  color: var(--color-3);
+  /* outline: 2px solid navajowhite; */
 }
 
 body {
@@ -16,14 +24,153 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: var(--color-1);
 }
 
 .flex-column {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .flex-row {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.weapon-icon {
+  font-size: 3em;
+}
+
+.container-styling {
+  border: 2px solid var(--color-3);
+  border-radius: var(--br-value);
+}
+
+.label-styling {
+  background-color: var(--color-3);
+  color: var(--color-1);
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+}
+
+p#vs {
+  font-size: 3em;
+}
+
+#rps-header,
+#rps-footer {
+  background-color: var(--color-2);
+  width: 100%;
+  padding: 25px 0px;
+  text-align: center;
+}
+
+main#rps-container {
+  flex-grow: 1;
+  justify-content: space-evenly;
+  width: 32%;
+}
+
+#human-choices {
+  border-radius: 10px;
+}
+
+#choice-heading {
+  padding: 18px;
+  border-radius: 7px 7px 0px 0px;
+  width: 100%;
+  text-align: center;
+}
+
+div#weapon-container {
+  padding: 20px;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+}
+
+button.weapon-icon {
+  outline: none;
+  padding: 5px;
+  border: 2px solid transparent;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+button.weapon-icon:hover {
+  cursor: pointer;
+  border: 2px solid var(--color-3);
+  border-radius: var(--br-value);
+}
+
+section#round-choices {
+  width: 100%;
+  justify-content: space-around;
+}
+
+p.choice-label {
+  width: 100%;
+}
+
+p.weapon-icon,
+h3#game-message {
+  padding: 10px;
+  text-align: center;
+}
+
+h3#game-message {
+  line-height: 1.5;
+}
+
+p#score-title,
+p#score-label,
+p.score {
+  padding: 10px 15px;
+  width: 100%;
+  text-align: center;
+}
+
+p#score-title,
+p#score-label {
+  border-bottom: 2px solid var(--color-3);
+}
+
+section.pop-up-modal {
+  width: 300px;
+  height: 150px;
+  background-color: var(--color-1);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+}
+
+section.pop-up-modal button {
+  outline: none;
+  padding: 10px;
+  background-color: transparent;
+  color: var(--color-3);
+  transition: 0.1s ease;
+}
+
+section.pop-up-modal button:hover {
+  background-color: var(--color-3);
+  color: var(--color-1);
+}
+
+.display {
+  display: block;
+}
+
+.hide {
+  display: none;
 }

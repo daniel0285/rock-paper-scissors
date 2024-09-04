@@ -14,8 +14,8 @@
     </header>
 
     <main id="rps-container" class="flex-column">
-        <section id="human-choices" class="flex-column">
-            <h2 id="choice-heading">Pick your weapon</h2>
+        <section id="human-choices" class="flex-column  container-styling">
+            <h2 id="choice-heading" class="label-styling">Pick your weapon</h2>
             <div id="weapon-container" class="flex-row">
                 <button class="weapon-icon" id="rock">👊🏻</button>
                 <button class="weapon-icon" id="paper">✋🏻</button>
@@ -24,34 +24,40 @@
         </section>
 
         <section id="round-choices" class="flex-row">
-            <div class="choice-container" class="flex-column">
-                <p class="choice-lable">You</p>
-                <p id="human-choice">❔</p>
+            <div class="flex-column container-styling">
+                <p class="choice-label label-styling">You</p>
+                <p id="human-choice" class="weapon-icon">❔</p>
             </div>
-            <p>VS</p>
-            <div class="choice-container" class="flex-column">
-                <p class="choice-lable">Computer</p>
-                <p id="computer-choice">❔</p>
+            <p id="vs">VS</p>
+            <div class="flex-column container-styling">
+                <p class="choice-label label-styling">CPU</p>
+                <p id="computer-choice" class="weapon-icon">❔</p>
             </div>
         </section>
 
         <section id="round-result" class="flex-column">
-            <h3 id="game-message">What are you waiting for?<br>Start the game!</h3>
-            <div id="round-score-board" class="flex-column">
-                <p id="round-number">Round 1</p>
+            <h3 id="game-message">Ready to Play?<br>Make Your Move!</h3>
+            <div id="round-score-board" class="flex-column container-styling">
+                <p id="round-number" class="label-styling"></p>
                 <div id="scores-container" class="flex-column">
                     <p id="score-title">Score</p>
                     <div id="both-scores" class="flex-row">
-                        <p id="human-score">You: 0</p>
-                        <p id="computer-score">Computer: 0</p>
+                        <div class="flex-column">
+                            <p id="score-label" style="border-right: 2px solid var(--color-3);">You</p>
+                            <p id="human-score" class="score" style="border-right: 2px solid var(--color-3);">0</p>
+                        </div>
+                        <div class="flex-column">
+                            <p id="score-label">CPU</p>
+                            <p id="computer-score" class="score">0</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="play-again-modal" style="display: none;" class="flex-column">
-            <h3 id="final-result"></h3>
-            <button id="play-again-button">Play Again</button>
+        <section id="play-again-modal" class="flex-column pop-up-modal container-styling hide">
+            <h3 id="final-result">You Won!</h3>
+            <button id="play-again-button" class="container-styling">Play Again</button>
         </section>
     </main>
 

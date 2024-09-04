@@ -26,8 +26,8 @@ function playRound(humanChoice, computerChoice) {
   ) {
     guiHumanChoice.textContent = `${convertToEmoji(humanChoice)}`;
     guiComputerChoice.textContent = `${convertToEmoji(computerChoice)}`;
-    guiHumanScore.textContent = `You: ${++humanScore}`;
-    guiComputerScore.textContent = `Computer: ${computerScore}`;
+    guiHumanScore.textContent = `${++humanScore}`;
+    guiComputerScore.textContent = `${computerScore}`;
     guiRoundNumber.textContent = `Round ${++roundNumber}`;
     gameMessage.innerHTML = `You win!<br>${upperCaseFirstLetter(
       humanChoice
@@ -39,8 +39,8 @@ function playRound(humanChoice, computerChoice) {
   ) {
     guiHumanChoice.textContent = `${convertToEmoji(humanChoice)}`;
     guiComputerChoice.textContent = `${convertToEmoji(computerChoice)}`;
-    guiHumanScore.textContent = `You: ${humanScore}`;
-    guiComputerScore.textContent = `Computer: ${++computerScore}`;
+    guiHumanScore.textContent = `${humanScore}`;
+    guiComputerScore.textContent = `${++computerScore}`;
     guiRoundNumber.textContent = `Round ${++roundNumber}`;
     gameMessage.innerHTML = `You lose!<br>${upperCaseFirstLetter(
       computerChoice
@@ -48,21 +48,21 @@ function playRound(humanChoice, computerChoice) {
   } else {
     guiHumanChoice.textContent = `${convertToEmoji(humanChoice)}`;
     guiComputerChoice.textContent = `${convertToEmoji(computerChoice)}`;
-    guiHumanScore.textContent = `You: ${humanScore}`;
-    guiComputerScore.textContent = `Computer: ${computerScore}`;
+    guiHumanScore.textContent = `${humanScore}`;
+    guiComputerScore.textContent = `${computerScore}`;
     guiRoundNumber.textContent = `Round ${++roundNumber}`;
     gameMessage.innerHTML = "It's a tie!";
     ++tiedRounds;
   }
 
   if (humanScore == 5) {
-    finalResult.innerHTML = `You won the game in ${roundNumber} rounds!<br> Final Score:<br>You: ${humanScore}<br>Computer: ${computerScore}`;
+    finalResult.innerText = `You won!`;
     disableButton();
     popUpModal();
   }
 
   if (computerScore == 5) {
-    finalResult.innerHTML = `The computer won the game ${roundNumber} rounds!<br> Final Score:<br>You: ${humanScore}<br>Computer: ${computerScore}`;
+    finalResult.innerText = `You lose!`;
     disableButton();
     popUpModal();
   }
@@ -87,6 +87,7 @@ const guiComputerScore = document.getElementById("computer-score");
 const playAgainModal = document.getElementById("play-again-modal");
 const finalResult = document.getElementById("final-result");
 const playAgainButton = document.getElementById("play-again-button");
+const roundScoreBoard = document.getElementById("round-score-board");
 
 rock.addEventListener("click", () => playGame("rock"));
 
@@ -97,7 +98,8 @@ scissors.addEventListener("click", () => playGame("scissors"));
 playAgainButton.addEventListener("click", () => tryAgain());
 
 function popUpModal() {
-  playAgainModal.style.display = "block";
+  playAgainModal.classList.remove("hide");
+  playAgainModal.classList.add("show");
 }
 
 function tryAgain() {
@@ -111,11 +113,12 @@ function tryAgain() {
 
   guiHumanChoice.textContent = "❔";
   guiComputerChoice.textContent = "❔";
-  guiHumanScore.textContent = "You: 0";
-  guiComputerScore.textContent = "Computer: 0";
-  guiRoundNumber.textContent = "Round: 1";
-  gameMessage.innerHTML = "What are you waiting for? Start the game!";
-  playAgainModal.style.display = "none";
+  guiHumanScore.textContent = "0";
+  guiComputerScore.textContent = "0";
+  guiRoundNumber.textContent = "";
+  gameMessage.innerHTML = "Ready to Play?<br>Make Your Move!";
+  playAgainModal.classList.add("hide");
+  playAgainModal.classList.remove("show");
 }
 
 function disableButton() {
@@ -137,5 +140,3 @@ function convertToEmoji(choice) {
 function upperCaseFirstLetter(word) {
   return word.charAt(0).toUpperCase() + word.slice(1);
 }
-
-// console.log(document.getElementById("round-number"));

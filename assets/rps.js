@@ -56,13 +56,13 @@ function playRound(humanChoice, computerChoice) {
   }
 
   if (humanScore == 5) {
-    gameMessage.innerHTML = `You won the game in ${roundNumber} rounds!<br> Final Score:<br>You: ${humanScore}<br>Computer: ${computerScore}`;
+    finalResult.innerHTML = `You won the game in ${roundNumber} rounds!<br> Final Score:<br>You: ${humanScore}<br>Computer: ${computerScore}`;
     disableButton();
     popUpModal();
   }
 
   if (computerScore == 5) {
-    gameMessage.innerHTML = `The computer won the game ${roundNumber} rounds!<br> Final Score:<br>You: ${humanScore}<br>Computer: ${computerScore}`;
+    finalResult.innerHTML = `The computer won the game ${roundNumber} rounds!<br> Final Score:<br>You: ${humanScore}<br>Computer: ${computerScore}`;
     disableButton();
     popUpModal();
   }
@@ -85,6 +85,7 @@ const guiComputerChoice = document.getElementById("computer-choice");
 const guiHumanScore = document.getElementById("human-score");
 const guiComputerScore = document.getElementById("computer-score");
 const playAgainModal = document.getElementById("play-again-modal");
+const finalResult = document.getElementById("final-result");
 const playAgainButton = document.getElementById("play-again-button");
 
 rock.addEventListener("click", () => playGame("rock"));

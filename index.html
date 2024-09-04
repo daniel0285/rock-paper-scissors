@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/rps.css">
     <title>Rock Paper & Scissors</title>
 </head>
 
@@ -12,39 +13,44 @@
         <h1>Rock Paper Scissors</h1>
     </header>
 
-    <main id="rps-container">
-        <section id="human-choices">
+    <main id="rps-container" class="flex-column">
+        <section id="human-choices" class="flex-column">
             <h2 id="choice-heading">Pick your weapon</h2>
-            <div id="weapon-container">
+            <div id="weapon-container" class="flex-row">
                 <button class="weapon-icon" id="rock">👊🏻</button>
                 <button class="weapon-icon" id="paper">✋🏻</button>
                 <button class="weapon-icon" id="scissors">✌🏻</button>
             </div>
         </section>
 
-        <section id="round-choices">
-            <div class="choice-container">
+        <section id="round-choices" class="flex-row">
+            <div class="choice-container" class="flex-column">
                 <p class="choice-lable">You</p>
                 <p id="human-choice">❔</p>
             </div>
             <p>VS</p>
-            <div class="choice-container">
+            <div class="choice-container" class="flex-column">
                 <p class="choice-lable">Computer</p>
                 <p id="computer-choice">❔</p>
             </div>
         </section>
 
-        <section id="round-result">
+        <section id="round-result" class="flex-column">
             <h3 id="game-message">What are you waiting for?<br>Start the game!</h3>
-            <div id="round-score-board">
+            <div id="round-score-board" class="flex-column">
                 <p id="round-number">Round 1</p>
-                <p id="scores">Score</p>
-                <p id="human-score">You: 0</p>
-                <p id="computer-score">Computer: 0</p>
+                <div id="scores-container" class="flex-column">
+                    <p id="score-title">Score</p>
+                    <div id="both-scores" class="flex-row">
+                        <p id="human-score">You: 0</p>
+                        <p id="computer-score">Computer: 0</p>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section id="play-again-modal" style="display: none;">
+        <section id="play-again-modal" style="display: none;" class="flex-column">
+            <h3 id="final-result"></h3>
             <button id="play-again-button">Play Again</button>
         </section>
     </main>
@@ -53,7 +59,7 @@
         <p>Created by Daniel Zabat</p>
     </footer>
 
-    <script src="assets/rock-paper-scissors.js"></script>
+    <script src="assets/rps.js"></script>
 </body>
 
 </html>

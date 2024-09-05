@@ -115,7 +115,7 @@ function tryAgain() {
   guiComputerChoice.textContent = "❔";
   guiHumanScore.textContent = "0";
   guiComputerScore.textContent = "0";
-  guiRoundNumber.textContent = "";
+  guiRoundNumber.textContent = "Round 0";
   gameMessage.innerHTML = "Ready to Play?<br>Make Your Move!";
   playAgainModal.classList.add("hide");
   playAgainModal.classList.remove("show");

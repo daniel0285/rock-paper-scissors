@@ -27,6 +27,12 @@ body {
   background-color: var(--color-1);
 }
 
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .flex-column {
   display: flex;
   flex-direction: column;
@@ -126,6 +132,8 @@ h3#game-message {
 
 h3#game-message {
   line-height: 1.5;
+  min-height: 100px;
+  min-width: 100%;
 }
 
 p#score-title,

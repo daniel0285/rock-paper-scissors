@@ -1,8 +1,32 @@
-// sets the score for human and computer to 0 (global scope variable)
+// sets the score for human and computer to 0
 let humanScore = 0;
 let computerScore = 0;
 let roundNumber = 0;
-let maxScore = 5;
+let roundWinner, gameWinner;
+
+//DOM elements for GUI
+const rock = document.getElementById("rock");
+const paper = document.getElementById("paper");
+const scissors = document.getElementById("scissors");
+const guiRoundNumber = document.getElementById("round-number");
+const gameMessage = document.getElementById("game-message");
+const guiHumanChoice = document.getElementById("human-choice");
+const guiComputerChoice = document.getElementById("computer-choice");
+const guiHumanScore = document.getElementById("human-score");
+const guiComputerScore = document.getElementById("computer-score");
+const playAgainModal = document.getElementById("play-again-modal");
+const finalResult = document.getElementById("final-result");
+const playAgainButton = document.getElementById("play-again-button");
+const roundScoreBoard = document.getElementById("round-score-board");
+
+//Event listeners for human choices
+rock.addEventListener("click", () => playGame("rock"));
+
+paper.addEventListener("click", () => playGame("paper"));
+
+scissors.addEventListener("click", () => playGame("scissors"));
+
+playAgainButton.addEventListener("click", () => tryAgain());
 
 // function for the computer that gives a random choice
 function getComputerChoice() {
@@ -24,35 +48,18 @@ function playRound(humanChoice, computerChoice) {
     (humanChoice == "paper" && computerChoice == "rock") ||
     (humanChoice == "scissors" && computerChoice == "paper")
   ) {
-    guiHumanChoice.textContent = `${convertToEmoji(humanChoice)}`;
-    guiComputerChoice.textContent = `${convertToEmoji(computerChoice)}`;
-    guiHumanScore.textContent = `${++humanScore}`;
-    guiComputerScore.textContent = `${computerScore}`;
-    guiRoundNumber.textContent = `Round ${++roundNumber}`;
-    gameMessage.innerHTML = `You win!<br>${upperCaseFirstLetter(
-      humanChoice
-    )} beats ${upperCaseFirstLetter(computerChoice)}`;
+    roundWinner = "human";
+    updateGui(humanChoice, computerChoice, roundWinner);
   } else if (
     (humanChoice == "rock" && computerChoice == "paper") ||
     (humanChoice == "paper" && computerChoice == "scissors") ||
     (humanChoice == "scissors" && computerChoice == "rock")
   ) {
-    guiHumanChoice.textContent = `${convertToEmoji(humanChoice)}`;
-    guiComputerChoice.textContent = `${convertToEmoji(computerChoice)}`;
-    guiHumanScore.textContent = `${humanScore}`;
-    guiComputerScore.textContent = `${++computerScore}`;
-    guiRoundNumber.textContent = `Round ${++roundNumber}`;
-    gameMessage.innerHTML = `You lose!<br>${upperCaseFirstLetter(
-      computerChoice
-    )} beats ${upperCaseFirstLetter(humanChoice)}`;
+    roundWinner = "computer";
+    updateGui(humanChoice, computerChoice, roundWinner);
   } else {
-    guiHumanChoice.textContent = `${convertToEmoji(humanChoice)}`;
-    guiComputerChoice.textContent = `${convertToEmoji(computerChoice)}`;
-    guiHumanScore.textContent = `${humanScore}`;
-    guiComputerScore.textContent = `${computerScore}`;
-    guiRoundNumber.textContent = `Round ${++roundNumber}`;
-    gameMessage.innerHTML = "It's a tie!";
-    ++tiedRounds;
+    roundWinner = "tie";
+    updateGui(humanChoice, computerChoice, roundWinner);
   }
 
   if (humanScore == 5) {
@@ -68,34 +75,35 @@ function playRound(humanChoice, computerChoice) {
   }
 }
 
+function updateGui(humanChoice, computerChoice, roundWinner) {
+  guiHumanChoice.textContent = `${convertToEmoji(humanChoice)}`;
+  guiComputerChoice.textContent = `${convertToEmoji(computerChoice)}`;
+  guiRoundNumber.textContent = `Round ${++roundNumber}`;
+
+  if (roundWinner === "human") {
+    guiHumanScore.textContent = `${++humanScore}`;
+    guiComputerScore.textContent = `${computerScore}`;
+    gameMessage.innerHTML = `You win!<br>${upperCaseFirstLetter(
+      humanChoice
+    )} beats ${upperCaseFirstLetter(computerChoice)}`;
+  } else if (roundWinner === "computer") {
+    guiHumanScore.textContent = `${humanScore}`;
+    guiComputerScore.textContent = `${++computerScore}`;
+    gameMessage.innerHTML = `You lose!<br>${upperCaseFirstLetter(
+      computerChoice
+    )} beats ${upperCaseFirstLetter(humanChoice)}`;
+  } else {
+    guiHumanScore.textContent = `${humanScore}`;
+    guiComputerScore.textContent = `${computerScore}`;
+    gameMessage.innerHTML = "It's a tie!";
+  }
+}
+
 function playGame(input) {
   const humanSelection = input;
   const computerSelection = getComputerChoice();
   playRound(humanSelection, computerSelection);
 }
-
-//DOM elements for GUI
-const rock = document.getElementById("rock");
-const paper = document.getElementById("paper");
-const scissors = document.getElementById("scissors");
-const guiRoundNumber = document.getElementById("round-number");
-const gameMessage = document.getElementById("game-message");
-const guiHumanChoice = document.getElementById("human-choice");
-const guiComputerChoice = document.getElementById("computer-choice");
-const guiHumanScore = document.getElementById("human-score");
-const guiComputerScore = document.getElementById("computer-score");
-const playAgainModal = document.getElementById("play-again-modal");
-const finalResult = document.getElementById("final-result");
-const playAgainButton = document.getElementById("play-again-button");
-const roundScoreBoard = document.getElementById("round-score-board");
-
-rock.addEventListener("click", () => playGame("rock"));
-
-paper.addEventListener("click", () => playGame("paper"));
-
-scissors.addEventListener("click", () => playGame("scissors"));
-
-playAgainButton.addEventListener("click", () => tryAgain());
 
 function popUpModal() {
   playAgainModal.classList.remove("hide");

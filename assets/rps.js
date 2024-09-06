@@ -26,7 +26,56 @@ paper.addEventListener("click", () => playGame("paper"));
 
 scissors.addEventListener("click", () => playGame("scissors"));
 
-playAgainButton.addEventListener("click", () => tryAgain());
+playAgainButton.addEventListener("click", () => resetGame());
+
+//Function that hide and show a modal by changing css class
+function popUpModal() {
+  playAgainModal.classList.remove("hide");
+  playAgainModal.classList.add("show");
+}
+
+//Function that revert the GUI to initial value
+function resetGame() {
+  rock.disabled = false;
+  paper.disabled = false;
+  scissors.disabled = false;
+
+  humanScore = 0;
+  computerScore = 0;
+  roundNumber = 0;
+
+  guiHumanChoice.textContent = "❔";
+  guiComputerChoice.textContent = "❔";
+  guiHumanScore.textContent = "0";
+  guiComputerScore.textContent = "0";
+  guiRoundNumber.textContent = "Round 0";
+  gameMessage.innerHTML = "Ready to Play?<br>Make Your Move!";
+  playAgainModal.classList.add("hide");
+  playAgainModal.classList.remove("show");
+}
+
+//Function that disable human choices buttons
+function disableChoicesButton() {
+  rock.disabled = true;
+  paper.disabled = true;
+  scissors.disabled = true;
+}
+
+//Function that convert the text choice to emoji
+function convertToEmoji(choice) {
+  if (choice == "rock") {
+    return "👊🏻";
+  } else if (choice == "paper") {
+    return "✋🏻";
+  } else {
+    return "✌🏻";
+  }
+}
+
+//Function that converts the first lettter of the word to uppercase
+function upperCaseFirstLetter(word) {
+  return word.charAt(0).toUpperCase() + word.slice(1);
+}
 
 // function for the computer that gives a random choice
 function getComputerChoice() {
@@ -64,17 +113,18 @@ function playRound(humanChoice, computerChoice) {
 
   if (humanScore == 5) {
     finalResult.innerText = `You won!`;
-    disableButton();
+    disableChoicesButton();
     popUpModal();
   }
 
   if (computerScore == 5) {
     finalResult.innerText = `You lose!`;
-    disableButton();
+    disableChoicesButton();
     popUpModal();
   }
 }
 
+//Function that update the GUI based on the choices
 function updateGui(humanChoice, computerChoice, roundWinner) {
   guiHumanChoice.textContent = `${convertToEmoji(humanChoice)}`;
   guiComputerChoice.textContent = `${convertToEmoji(computerChoice)}`;
@@ -99,52 +149,9 @@ function updateGui(humanChoice, computerChoice, roundWinner) {
   }
 }
 
+//Function that runs the game by calling other functions
 function playGame(input) {
   const humanSelection = input;
   const computerSelection = getComputerChoice();
   playRound(humanSelection, computerSelection);
-}
-
-function popUpModal() {
-  playAgainModal.classList.remove("hide");
-  playAgainModal.classList.add("show");
-}
-
-function tryAgain() {
-  rock.disabled = false;
-  paper.disabled = false;
-  scissors.disabled = false;
-
-  humanScore = 0;
-  computerScore = 0;
-  roundNumber = 0;
-
-  guiHumanChoice.textContent = "❔";
-  guiComputerChoice.textContent = "❔";
-  guiHumanScore.textContent = "0";
-  guiComputerScore.textContent = "0";
-  guiRoundNumber.textContent = "Round 0";
-  gameMessage.innerHTML = "Ready to Play?<br>Make Your Move!";
-  playAgainModal.classList.add("hide");
-  playAgainModal.classList.remove("show");
-}
-
-function disableButton() {
-  rock.disabled = true;
-  paper.disabled = true;
-  scissors.disabled = true;
-}
-
-function convertToEmoji(choice) {
-  if (choice == "rock") {
-    return "👊🏻";
-  } else if (choice == "paper") {
-    return "✋🏻";
-  } else {
-    return "✌🏻";
-  }
-}
-
-function upperCaseFirstLetter(word) {
-  return word.charAt(0).toUpperCase() + word.slice(1);
 }

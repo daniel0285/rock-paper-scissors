@@ -27,6 +27,10 @@ body {
   background-color: var(--color-1);
 }
 
+p {
+  font-size: 1em;
+}
+
 .flex {
   display: flex;
   align-items: center;
@@ -124,16 +128,16 @@ p.choice-label {
   width: 100%;
 }
 
-p.weapon-icon,
-h3#game-message {
+p.weapon-icon {
   padding: 10px;
   text-align: center;
 }
 
 h3#game-message {
   line-height: 1.5;
-  min-height: 100px;
+  min-height: 80px;
   min-width: 100%;
+  text-align: center;
 }
 
 p#score-title,
